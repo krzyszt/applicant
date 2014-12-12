@@ -1,0 +1,58 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li><a ng-href="#">Home</a></li>
+    <li><a ng-href="#/features">Features</a></li>
+  </ul>
+  <h3 class="text-muted">Applicant</h3>
+</div>
+
+<div class="page-header">
+    <h3>An application for <a href="#">{{ applyFor }}</a></h3>
+</div>
+
+<div class="row marketing">
+    <form role="form">
+        <div class="form-group">
+ 		<label for="firstName">First Name</label>
+ 		<input type="text" ng-model="applicant.firstName" class="form-control" id="firstName" placeholder="First Name">
+  	</div>
+        <div class="form-group">
+ 		<label for="lastName">Last Name</label>
+ 		<input type="text" ng-model="applicant.lastName" class="form-control" id="LastName" placeholder="Last Name">
+  	</div>
+        <div class="form-group">
+            <label for="applicantEmail">Email address</label>
+            <input type="email" ng-model="applicant.email" class="form-control" id="applicantEmail" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="resumeFile">CV</label>
+            <input type="file" id="resumeFile">
+            <p class="help-block">Attach your CV</p>
+        </div>
+        <div class="form-group">
+            <label for="applicantCover">Cover Letter</label>
+            <textarea ng-model="applicant.coverLetter" class="form-control"  id="applicantCover" placeholder="Write a few words about yourself" rows="20"></textarea>
+        </div>
+        
+        <p><hr></p>
+	<div class="row">
+		<div class="col-xs-6">
+			<a href="#" class="btn btn-info" role="button"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp; Back</a>
+        </div>
+        <div class="col-xs-6">
+			<button class="btn btn-primary pull-right" type="submit">Submit &raquo;</button>
+		</div>
+	</div>
+	<p>&nbsp;</p>
+        
+    </form>
+        
+    
+    
+    
+  
+</div>
+
+<div class="footer">
+    <p><span class="glyphicon glyphicon-leaf"></span> from <a href="https://github.com/krzyszt">krzyszt</a></p>
+</div>

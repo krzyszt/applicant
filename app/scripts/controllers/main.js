@@ -2,9 +2,8 @@
 
 angular.module('applicantApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    
+  })
+  .controller('ApplyCtrl', function ($scope) {
+    $scope.applyFor = "JavaScript Developer";
   });
