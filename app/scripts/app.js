@@ -12,6 +12,6 @@ angular
     $routeProvider
       .when('/', { templateUrl: 'views/main.html', controller: 'MainCtrl'})
       .when('/features', { templateUrl: 'views/features.tpl.html'})
-      .when('/apply', { templateUrl: 'views/apply.tpl.html', controller: 'ApplyCtrl'})
+      .when('/apply/', { templateUrl: 'views/apply.tpl.html', controller: 'ApplyCtrl'})
       .otherwise({ redirectTo: '/'});
   });
