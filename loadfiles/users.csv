@@ -1,0 +1,3 @@
+user_id,username,email,password,role
+1,john,john@goindi.com,john,admin
+2,bob,bob@goindi.com,bob,user
