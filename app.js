@@ -1,4 +1,5 @@
 var express = require('express');
+var expressSession = require('express-session');
 var db = require('./lib/models/db');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -7,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 //var routes = require('./routes/index');
-//var users = require('./routes/users');
 var apply = require('./routes/apply');
 
 var app = express();
@@ -17,6 +17,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser("applicant cookie"));
+app.use(expressSession({ 
+   secrect: 'mySecretKey',
+   resave: true,
+   saveUninitialized: true
+}));
+
+var passport = require('./lib/passport/init')(app);
 
 app.use(require('less-middleware')(path.join(__dirname, 'app')));
 app.use(express.static(path.join(__dirname, 'app')));
