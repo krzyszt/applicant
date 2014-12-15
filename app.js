@@ -31,6 +31,21 @@ app.use(express.static(path.join(__dirname, 'app')));
 //app.use('/users', users);
 app.post('/apply', apply.create );
 
+app.post('/signup', function(req, res, next){
+   passport.authenticate('signup', function(err, user, info){
+      if (err) {
+         return next(err);
+      }
+      if (!user) {
+         console.log('Application error - user not created.');
+         return;
+      }
+      
+      return res.json(user);
+      
+   });
+});
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
