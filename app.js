@@ -1,17 +1,23 @@
-var express = require('express');
-var expressSession = require('express-session');
-var db = require('./lib/models/db');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+//==================REQUIRE MODULES====================================
+var express = require('express'),
+    expressSession = require('express-session'),
+    db = require('./lib/models/db'),
+    path = require('path'),
+    favicon = require('static-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser');
 
-//var routes = require('./routes/index');
-var apply = require('./routes/apply');
+//====================LOCAL MODULES=============================
 
+
+//=====================CONFIGURATION============================
+// var config = require('./config/config'),
+//     auth = require('./config/authenticate.js');
+
+//====================EXPRESS APP===============================
 var app = express();
-
+//=======================MIDDLEWARE================================
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,28 +29,43 @@ app.use(expressSession({
    saveUninitialized: true
 }));
 
-var passport = require('./lib/passport/init')(app);
-
+//===========================VIEWS,LAYOUTS,ENGINE==================
 app.use(require('less-middleware')(path.join(__dirname, 'app')));
 app.use(express.static(path.join(__dirname, 'app')));
+
+//===================PASSPORT=========================
+// var passport = require('./lib/passport/init')(app);
+
+
+//===================ROUTES======================================
+//var routes = require('./routes/index');
+var apply = require('./routes/apply');
+
+
 
 //app.use('/users', users);
 app.post('/apply', apply.create );
 
-app.post('/signup', function(req, res, next){
-   passport.authenticate('signup', function(err, user, info){
-      if (err) {
-         return next(err);
-      }
-      if (!user) {
-         console.log('Application error - user not created.');
-         return;
-      }
+// app.post('/signup', function(req, res, next){
+   
+//    console.log(req.body);
+   
+//    passport.authenticate('signup', function(err, user, info){
+//       if (err) {
+//          return next(err);
+//       }
+//       if (!user) {
+//          console.log('Application error - user not created.');
+//          return;
+//       }
       
-      return res.json(user);
+//       return res.json(user);
       
-   });
-});
+//    });
+// });
+
+
+//==================ERROR HANDLERS===============================
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,8 +73,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-/// error handlers
 
 // development error handler
 // will print stacktrace
@@ -77,5 +96,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
+//=================MODULE EXPORTS=================================
 module.exports = app;
