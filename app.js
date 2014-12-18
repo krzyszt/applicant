@@ -36,7 +36,17 @@ app.use(express.static(path.join(__dirname, 'app')));
 
 //===================PASSPORT=========================
 // var passport = require('./lib/passport/init')(app);
-
+passport.use('signup', new LocalStrategy({
+    passReqToCallback: true,
+    usernameField: "email",
+    passwordField: "password"
+  },
+  function(req, username, password, done){
+      console.log(req.body);
+      console.log(username);
+      console.log(password);
+  }
+));
 
 
 
@@ -48,6 +58,10 @@ var apply = require('./routes/apply');
 
 //app.use('/users', users);
 app.post('/apply', apply.create );
+
+app.post('/signup', passport.authenticate('signup',{
+
+}));
 
 // app.post('/signup', function(req, res, next){
 //    console.log(req.body);
