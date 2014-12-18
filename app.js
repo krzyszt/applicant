@@ -1,7 +1,8 @@
 //==================REQUIRE MODULES====================================
 var express = require('express'),
     expressSession = require('express-session'),
-    db = require('./lib/models/db'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local'),
     path = require('path'),
     favicon = require('static-favicon'),
     logger = require('morgan'),
@@ -9,7 +10,7 @@ var express = require('express'),
     bodyParser = require('body-parser');
 
 //====================LOCAL MODULES=============================
-
+var db = require('./lib/models/db');
 
 //=====================CONFIGURATION============================
 // var config = require('./config/config'),
@@ -37,6 +38,8 @@ app.use(express.static(path.join(__dirname, 'app')));
 // var passport = require('./lib/passport/init')(app);
 
 
+
+
 //===================ROUTES======================================
 //var routes = require('./routes/index');
 var apply = require('./routes/apply');
@@ -47,9 +50,7 @@ var apply = require('./routes/apply');
 app.post('/apply', apply.create );
 
 // app.post('/signup', function(req, res, next){
-   
 //    console.log(req.body);
-   
 //    passport.authenticate('signup', function(err, user, info){
 //       if (err) {
 //          return next(err);
@@ -58,9 +59,7 @@ app.post('/apply', apply.create );
 //          console.log('Application error - user not created.');
 //          return;
 //       }
-      
 //       return res.json(user);
-      
 //    });
 // });
 
